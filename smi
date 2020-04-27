@@ -6,11 +6,26 @@ node {
 
         checkout scm
     }
+    
+    stage('MY HELM') {
+            steps {
+                echo "Check out acme code"
+             
+                // Validate kubectl
+                sh "kubectl cluster-info"
+
+                // Init helm client
+                sh "helm init"
+                }
+                }
+
+    
+    
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
+       
         app = docker.build("upalle/myrepo")
     }
 
